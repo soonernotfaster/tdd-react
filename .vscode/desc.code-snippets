@@ -41,8 +41,20 @@
 	"Basic imports": {
 		"prefix": "bimp",
 		"body": [
-			"import { describe, it, beforeEach } from \"vitest\""
+			"import { describe, it, beforeEach } from \"vitest\"",
+			"import { render, screen } from \"@testing-library/react\""
 		],
 		"description": "Basic imports"
+	},
+	"New function": {
+		"prefix": "nf",
+		"body": [
+			"function $1() {",
+			"  return null",
+			"}",
+			"",
+			"export default $1"
+		],
+		"description": "New function"
 	}
 }

@@ -1,54 +1,21 @@
-# React + TypeScript + Vite
+# Bowling Kata in React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to a version of the [Bowling Kata](https://kata-log.rocks/bowling-game-kata). This version is a slight alteration of the rules of the typical Bowling Kata by adding a focus on BDD. Behavior-Driven Development lends itself better to most forms of UI based testing. Not only does it put an emphasis on preventing coupling to the implementation, it creates a mechanism to describe various starting scenarios or contexts. These contexts can be implemented as describe blocks and allow you declare a shared setup and teardown in a logical fashion. This drastically reduces the cogntive load of a custom organization.
 
-Currently, two official plugins are available:
+As a bowler,
+I want to know the score of my game without doing math
+So that I can have more fun
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Acceptance Critera
 
-## Expanding the ESLint configuration
+- Score of frame is the sum of both rolls
+- A Spare frame has a score of 10 + the next roll
+- A Strike frame has a score of 10 + next two rolls
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Domain
+- Strike - knocking down all 10 pins in single roll
+- Spare - knocking down all 10 pins across two rolls
+- Frame - rolls for a turn. There are 10 frames total
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+N.B.
+If a Strike or Spare ocurss on 10th frame, additional rolls are allowed to complete the frame. These rolls are not treated as Spares or Strikes.

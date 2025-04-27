@@ -37,5 +37,12 @@
 			"})"
 		],
 		"description": "test sync"
+	},
+	"Basic imports": {
+		"prefix": "bimp",
+		"body": [
+			"import { describe, it, beforeEach } from \"vitest\""
+		],
+		"description": "Basic imports"
 	}
 }

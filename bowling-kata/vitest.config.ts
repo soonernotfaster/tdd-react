@@ -9,6 +9,7 @@ export default defineConfig({
         },
         sequence: {
             shuffle: true,
-        }
+        },
+        setupFiles: ["./setupTests.ts"]
     },
 })

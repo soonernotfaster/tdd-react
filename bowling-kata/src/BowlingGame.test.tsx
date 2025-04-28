@@ -3,12 +3,13 @@ import { render, screen } from "@testing-library/react"
 import BowlingGame from "./BowlingGame"
 
 describe(BowlingGame, () => {
-    it("has 10 empty frames", async () => {
-        render(<BowlingGame />)
-
-        for (let frame = 1; frame < 11; frame++)
-            expectScoreToBe(frame, "")
-        
+    describe("initial render", () => {
+        it("has 10 empty frames", async () => {
+            render(<BowlingGame />)
+    
+            for (let frame = 1; frame < 11; frame++)
+                expectScoreToBe(frame, "")  
+        })
     })
 
     function expectScoreToBe(frame: number, score: string) {

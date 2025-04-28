@@ -32,8 +32,8 @@ describe(BowlingGame, () => {
                 for (let frame = 1; frame < 11; frame++)
                     expectScoreToBe(frame, "0")
 
+                expect(screen.getByTestId("total-score").innerText).toEqual("0")
             })
-            // Total score is zero
         })
     })
 

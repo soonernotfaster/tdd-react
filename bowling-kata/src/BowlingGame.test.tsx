@@ -10,6 +10,12 @@ describe(BowlingGame, () => {
             for (let frame = 1; frame < 11; frame++)
                 expectScoreToBe(frame, "")  
         })
+
+        it("has no rolls for any frames", () => {
+            render(<BowlingGame />)
+
+            expect(screen.queryAllByTestId("roll")).toHaveLength(0)
+        })
     })
 
     function expectScoreToBe(frame: number, score: string) {

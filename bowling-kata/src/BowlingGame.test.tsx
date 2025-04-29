@@ -9,7 +9,7 @@ describe(BowlingGame, () => {
             render(<BowlingGame />)
 
             for (let frame = 1; frame < 11; frame++)
-                expectScoreToBe(frame, "")
+                expectFrameScoreToBe(frame, "")
         })
 
         it("has no rolls for any frames", () => {
@@ -47,14 +47,14 @@ describe(BowlingGame, () => {
                     expectRollToBe(frame, 1, rollScore)
                     expectRollToBe(frame, 2, rollScore)
                 }
+
+                for (let frame = 1; frame < 11; frame++)
+                    expectFrameScoreToBe(frame, frameScore)
             })
         })
 
         it(`has score of ${totalScore}`, async () => {
             await waitFor(() => {
-                for (let frame = 1; frame < 11; frame++)
-                    expectScoreToBe(frame, frameScore)
-
                 expect(screen.getByTestId("total-score").innerText).toEqual(totalScore)
             })
         })
@@ -65,7 +65,7 @@ describe(BowlingGame, () => {
         expect(screen.getByTestId(rollId).innerText, rollId).toEqual(expectedPins)
     }
 
-    function expectScoreToBe(frame: number, score: string) {
+    function expectFrameScoreToBe(frame: number, score: string) {
         const frame_id = `frame${frame}-score`
         expect(screen.getByTestId(frame_id).innerText, frame_id).toEqual(score)
     }

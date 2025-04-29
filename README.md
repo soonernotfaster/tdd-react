@@ -20,6 +20,8 @@ So that I can have more fun
 If a Strike or Spare ocurss on 10th frame, additional rolls are allowed to complete the frame. These rolls are not treated as Spares or Strikes.
 
 ### Domain terms
+
 - Strike - knocking down all 10 pins in single roll
 - Spare - knocking down all 10 pins across two rolls
 - Frame - rolls for a turn. There are 10 frames total
+- Pins - there are 10 total

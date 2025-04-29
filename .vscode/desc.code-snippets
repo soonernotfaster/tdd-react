@@ -74,5 +74,14 @@
 		"body": [
 			"$1.reduce((prev, curr) => $2, $3)"
 		]
-	}
+	},
+	"Wait for": {
+		"prefix": "wa",
+		"body": [
+			"await waitFor(() => {",
+			"\t$1",
+			"})",
+		],
+		"description": "React testing library waitfor block"
+	},
 }

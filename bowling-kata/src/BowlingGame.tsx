@@ -1,5 +1,12 @@
 import { useState } from "react"
 
+function frameTotal(rolls: number[]): string {
+    if (rolls.length === 0)
+        return ""
+    else
+        return `${(rolls[0] || 0) + (rolls[1] || 0)}`
+}
+
 function BowlingGame() {
     const [frames, setFrames] = useState<number[]>(Array.from({ length: 10 }))
     const [currentFrame, setCurrentFrame] = useState<number>(0)
@@ -7,14 +14,15 @@ function BowlingGame() {
     const [rolls, setRolls] = useState<number[][]>(Array.from({ length: 10 }).fill([]) as number[][])
 
     return <div>
-        {frames.map((_, index) => {
+        {rolls.map((frameRolls, index) => {
+
             return (
                 <div key={index}>
                     <div data-testid={`frame${index + 1}-score`}>
-                        {frames.length > index && frames[index]}
+                        {frameTotal(frameRolls)}
                     </div>
-                    <div data-testid={`frame${index + 1}-roll${1}`}>{rolls[index][0]}</div>
-                    <div data-testid={`frame${index + 1}-roll${2}`}>{rolls[index][1]}</div>
+                    <div data-testid={`frame${index + 1}-roll${1}`}>{frameRolls[0]}</div>
+                    <div data-testid={`frame${index + 1}-roll${2}`}>{frameRolls[1]}</div>
                 </div>
             )
         })}

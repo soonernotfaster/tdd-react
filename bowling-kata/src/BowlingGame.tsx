@@ -8,7 +8,6 @@ function frameTotal(rolls: number[]): string {
 }
 
 function BowlingGame() {
-    const [frames, setFrames] = useState<number[]>(Array.from({ length: 10 }))
     const [currentFrame, setCurrentFrame] = useState<number>(0)
 
     const [rolls, setRolls] = useState<number[][]>(Array.from({ length: 10 }).fill([]) as number[][])
@@ -28,16 +27,10 @@ function BowlingGame() {
         })}
 
 
-        <div data-testid="total-score">{frames.length === 10 && 0}</div>
+        <div data-testid="total-score">{rolls.length === 10 && 0}</div>
         <div>
             <button data-testid="gutter" onClick={() => {
                 let frameFinished = false
-                const updatedFrames = frames.map((frameScore, frameIndex) => {
-                    if (frameIndex === currentFrame) {
-                        return 0
-                    }
-                    return frameScore
-                })
                 const updatedRolls = rolls.map((frameRolls, frameIndex) => {
                     if (frameIndex === currentFrame) {
                         if (frameRolls.length === 1)
@@ -46,7 +39,6 @@ function BowlingGame() {
                     }
                     return frameRolls
                 })
-                setFrames(updatedFrames)
                 setRolls(updatedRolls)
                 if (frameFinished)
                     setCurrentFrame(currentFrame + 1)

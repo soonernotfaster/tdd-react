@@ -17,8 +17,8 @@ function totalScore(frames: number[][]): string {
 function BowlingGame() {
   const [currentFrame, setCurrentFrame] = useState<number>(0);
 
-  const [rolls, setRolls] = useState<number[][]>(
-    Array.from({ length: 10 }).fill([]) as number[][]
+  const [rolls, setRolls] = useState<number[][]>(() =>
+    Array.from({ length: 10 }, () => [])
   );
 
   const handleRoll = (numPins: number) => {
@@ -73,7 +73,7 @@ function BowlingGame() {
           4 pin
         </button>
         <button data-testid="5-pin" onClick={handleRoll(5)}>
-          4 pin
+          5 pin
         </button>
       </div>
     </div>

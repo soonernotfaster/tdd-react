@@ -8,6 +8,8 @@ function frameTotal(rolls: number[]): string {
 }
 
 function totalScore(frames: number[][]): string {
+    if (frames.length < 10)
+        return ""
     const total = frames.reduce((prev, curr) => prev + ((curr[0] || 0) + (curr[1] || 0)), 0)
     return `${total}`
 }
@@ -48,7 +50,7 @@ function BowlingGame() {
         })}
 
 
-        <div data-testid="total-score">{totalScore(rolls)}</div>
+        <div data-testid="total-score">{currentFrame > 9 && totalScore(rolls)}</div>
         <div>
             <button data-testid="gutter" onClick={handleRoll(0)}>Gutter Ball</button>
             <button data-testid="1-pin" onClick={handleRoll(1)}>1 pin</button>

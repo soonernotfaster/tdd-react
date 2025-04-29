@@ -17,6 +17,12 @@ describe(BowlingGame, () => {
 
             expect(screen.queryAllByTestId("roll")).toHaveLength(0)
         })
+
+        it("does not show score", () => {
+            render(<BowlingGame />)
+
+            expect(screen.getByTestId("total-score").innerText).toEqual("")
+        })
     })
 
     describe("when all gutters rolled", () => {

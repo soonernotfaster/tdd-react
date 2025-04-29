@@ -7,9 +7,9 @@ describe(BowlingGame, () => {
     describe("initial render", () => {
         it("has 10 empty frames", async () => {
             render(<BowlingGame />)
-    
+
             for (let frame = 1; frame < 11; frame++)
-                expectScoreToBe(frame, "")  
+                expectScoreToBe(frame, "")
         })
 
         it("has no rolls for any frames", () => {
@@ -20,14 +20,25 @@ describe(BowlingGame, () => {
     })
 
     describe("when all gutters rolled", () => {
-        it("has score of zero", async () => {
+        beforeEach(() => {
             userEvent.setup()
 
             render(<BowlingGame />)
 
             for (let gutters = 0; gutters < 20; gutters++)
                 userEvent.click(screen.getByTestId("gutter"))
+        })
 
+        it("has zero for each roll", async () => {
+            await waitFor(() => {
+                for (let frame = 1; frame < 11; frame++) {
+                    expectRollToBe(frame, 1, "0")
+                    expectRollToBe(frame, 2, "0")
+                }
+            })
+        })
+
+        it("has score of zero", async () => {
             await waitFor(() => {
                 for (let frame = 1; frame < 11; frame++)
                     expectScoreToBe(frame, "0")
@@ -36,6 +47,11 @@ describe(BowlingGame, () => {
             })
         })
     })
+
+    function expectRollToBe(frame: number, roll: number, expectedPins: string) {
+        const rollId = `frame${frame}-roll${roll}`
+        expect(screen.getByTestId(rollId).innerText, rollId).toEqual(expectedPins)
+    }
 
     function expectScoreToBe(frame: number, score: string) {
         const frame_id = `frame${frame}-score`

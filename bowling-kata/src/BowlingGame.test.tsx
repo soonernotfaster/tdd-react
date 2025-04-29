@@ -60,6 +60,30 @@ describe(BowlingGame, () => {
         })
     })
 
+    describe("when first frame is spare", () => {
+        beforeEach(() => {
+            userEvent.setup()
+    
+            render(<BowlingGame />)
+    
+            userEvent.click(screen.getByTestId("5-pin"))
+            userEvent.click(screen.getByTestId("5-pin"))
+        })
+
+        describe("all gutters", () => {
+            beforeEach(() => {
+                for (let rolls = 0; rolls < 18; rolls++)
+                    userEvent.click(screen.getByTestId("gutter"))    
+            })
+        
+            it("has 10 has total", async () => {
+                await waitFor(() => {
+                    expect(screen.getByTestId("total-score").innerText).toEqual("10")
+                })
+            })    
+        })
+    })
+
     function expectRollToBe(frame: number, roll: number, expectedPins: string) {
         const rollId = `frame${frame}-roll${roll}`
         expect(screen.getByTestId(rollId).innerText, rollId).toEqual(expectedPins)

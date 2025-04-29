@@ -54,6 +54,9 @@ function BowlingGame() {
         <div>
             <button data-testid="gutter" onClick={handleRoll(0)}>Gutter Ball</button>
             <button data-testid="1-pin" onClick={handleRoll(1)}>1 pin</button>
+            <button data-testid="2-pin" onClick={handleRoll(2)}>2 pin</button>
+            <button data-testid="3-pin" onClick={handleRoll(3)}>3 pin</button>
+            <button data-testid="4-pin" onClick={handleRoll(4)}>4 pin</button>
         </div>
     </div>
 }

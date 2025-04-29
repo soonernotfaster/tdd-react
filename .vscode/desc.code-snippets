@@ -9,7 +9,8 @@
 	"Describe block": {
 		"prefix": "desc",
 		"body": [
-			"describe($1, () => {",
+			"describe(\"$1\", () => {",
+			"\t$2",
 			"})"
 		],
 		"description": "Describe block"

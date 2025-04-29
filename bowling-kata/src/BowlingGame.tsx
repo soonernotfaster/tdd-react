@@ -7,11 +7,32 @@ function frameTotal(rolls: number[]): string {
         return `${(rolls[0] || 0) + (rolls[1] || 0)}`
 }
 
+function totalScore(frames: number[][]): string {
+    const total = frames.reduce((prev, curr) => prev + ((curr[0] || 0) + (curr[1] || 0)), 0)
+    return `${total}`
+}
+
 function BowlingGame() {
     const [currentFrame, setCurrentFrame] = useState<number>(0)
 
     const [rolls, setRolls] = useState<number[][]>(Array.from({ length: 10 }).fill([]) as number[][])
 
+    const handleRoll = (numPins: number) => {
+        return () => {
+            let frameFinished = false
+            const updatedRolls = rolls.map((frameRolls, frameIndex) => {
+                if (frameIndex === currentFrame) {
+                    if (frameRolls.length === 1)
+                        frameFinished = true
+                    return [...frameRolls, numPins]
+                }
+                return frameRolls
+            })
+            setRolls(updatedRolls)
+            if (frameFinished)
+                setCurrentFrame(currentFrame + 1)
+        }
+    }
     return <div>
         {rolls.map((frameRolls, index) => {
 
@@ -27,22 +48,10 @@ function BowlingGame() {
         })}
 
 
-        <div data-testid="total-score">{rolls.length === 10 && 0}</div>
+        <div data-testid="total-score">{totalScore(rolls)}</div>
         <div>
-            <button data-testid="gutter" onClick={() => {
-                let frameFinished = false
-                const updatedRolls = rolls.map((frameRolls, frameIndex) => {
-                    if (frameIndex === currentFrame) {
-                        if (frameRolls.length === 1)
-                            frameFinished = true
-                        return [...frameRolls, 0]
-                    }
-                    return frameRolls
-                })
-                setRolls(updatedRolls)
-                if (frameFinished)
-                    setCurrentFrame(currentFrame + 1)
-            }}>Gutter Ball</button>
+            <button data-testid="gutter" onClick={handleRoll(0)}>Gutter Ball</button>
+            <button data-testid="1-pin" onClick={handleRoll(1)}>1 pin</button>
         </div>
     </div>
 }

@@ -48,6 +48,35 @@ describe(BowlingGame, () => {
         })
     })
 
+    describe("when all 1s are rolled", () => {
+        beforeEach(() => {
+            userEvent.setup()
+
+            render(<BowlingGame />)
+
+            for (let rolls = 0; rolls < 20; rolls++)
+                userEvent.click(screen.getByTestId("1-pin"))
+        })
+
+        it("has 1 pin for each roll", async () => {
+            await waitFor(() => {
+                for (let frame = 1; frame < 11; frame++) {
+                    expectRollToBe(frame, 1, "1")
+                    expectRollToBe(frame, 2, "1")
+                }
+            })
+        })
+
+        it("has score of 20", async () => {
+            await waitFor(() => {
+                for (let frame = 1; frame < 11; frame++)
+                    expectScoreToBe(frame, "2")
+
+                expect(screen.getByTestId("total-score").innerText).toEqual("20")
+            })
+        })
+    })
+
     function expectRollToBe(frame: number, roll: number, expectedPins: string) {
         const rollId = `frame${frame}-roll${roll}`
         expect(screen.getByTestId(rollId).innerText, rollId).toEqual(expectedPins)

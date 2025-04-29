@@ -26,8 +26,8 @@ describe(BowlingGame, () => {
     })
 
     describe.each([
-        {rollButton: "1-pin", rollScore: "1", frameScore: "2", totalScore: "20"},
         {rollButton: "gutter", rollScore: "0", frameScore: "0", totalScore: "0"},
+        {rollButton: "1-pin", rollScore: "1", frameScore: "2", totalScore: "20"},
     ])("when each roll is $rollButton", ({rollButton, rollScore, frameScore, totalScore}) => {
         beforeEach(() => {
             userEvent.setup()

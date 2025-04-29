@@ -68,5 +68,11 @@
 			"\t$4",
 			"})"
 		]
+	},
+	"Reduce": {
+		"prefix": "rd",
+		"body": [
+			"$1.reduce((prev, curr) => $2, $3)"
+		]
 	}
 }

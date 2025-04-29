@@ -60,5 +60,13 @@
 			"export default $1"
 		],
 		"description": "New function"
+	},
+	"Map": {
+		"prefix": "mp",
+		"body": [
+			"$1.map(($2, $3) => {",
+			"\t$4",
+			"})"
+		]
 	}
 }

@@ -10,10 +10,37 @@ describe(BowlingGame, () => {
 
       render(<BowlingGame />);
 
-      userEvent.click(screen.getByTestId("gutter"));
+      for (let i = 0; i < 20; i++) {
+        userEvent.click(screen.getByTestId("gutter"));
+      }
 
       await waitFor(() => {
-        expect(screen.getByTestId("total-score").innerText).toEqual("0");
+        for (let i = 0; i < 10; i++) {
+          expect(screen.getByTestId(`frame${i + 1}-score`).innerText).toEqual(
+            "0"
+          );
+        }
+      });
+    });
+  });
+
+  describe("on a single round, when just part of the pins are rolled", () => {
+    it("the score equals the number of rolled pins", async () => {
+      const expectedValues = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+      userEvent.setup();
+
+      render(<BowlingGame />);
+
+      for (let i = 0; i < 20; i++) {
+        userEvent.click(screen.getByTestId("roll-1"));
+      }
+
+      await waitFor(() => {
+        expectedValues.forEach((value, i) => {
+          expect(screen.getByTestId(`frame${i + 1}-score`).innerText).toEqual(
+            `${value}`
+          );
+        });
       });
     });
   });

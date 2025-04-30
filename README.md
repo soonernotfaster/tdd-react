@@ -12,14 +12,78 @@ So that I can have more fun
 
 ### Acceptance Critera
 
-- Score of frame is the sum of both rolls
+- Score of frame is the sum of both rolls and the previous frame
 - A Spare frame has a score of 10 + the next roll
 - A Strike frame has a score of 10 + next two rolls
+
+Given a new game
+When I roll all gutter balls
+Then I see each roll as "\_"
+And I see the frame total as "0"
+
+When I roll all 1s
+Then I see the each roll as "1"
+And I see frames with the totals [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+
+When I roll all 2s
+Then I see the each roll as "2"
+And I see frames with the totals [4, 8, 12, 16, 20, 24, 28, 32, 36, 40]
+
+When I roll all 3s  
+Then I see the each roll as "3"  
+And I see frames with the totals [6, 12, 18, 24, 30, 36, 42, 48, 54, 60]
+
+When I roll all 4s
+Then I see the each roll as "4"
+And I see frames with the totals [8, 16, 24, 32, 40, 48, 56, 64, 72, 80]
+
+### Strike
+
+When I roll a strike
+And I roll all gutter balls
+Then I see an "X" for the first roll
+And I see frames with the totals [10, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+When I roll a strike
+And I roll 2
+And I roll 2
+And I roll all gutter balls
+Then I see an "X" for the first roll
+And I see frames with the totals [14, 18, 0, 0, 0, 0, 0, 0, 0, 0]
+
+When I roll 18 gutter balls
+And I roll a strike
+And I roll 2
+And I roll a gutter
+Then I see an "X" for the third last roll
+And I see frames with the totals [0, 0, 0, 0, 0, 0, 0, 0, 0, 12]
+
+### Spare
+
+When I roll a spare (5, 5)
+And I roll all gutter balls
+Then I see an "5" for the first roll
+And I see an "/" for the second roll
+And I see frames with the totals [10, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+When I roll a spare (5, 5)
+And I roll 2
+And I roll 2
+And I roll all gutter balls
+Then I see frames with the totals [12, 16, 0, 0, 0, 0, 0, 0, 0, 0]
+
+### Perfect game
+
+When I roll all strikes (12 in a row)
+Then I see frames with the totals [30, 60, 90, 120, 150, 180, 210, 240, 270, 300]
 
 **N.B.**
 If a Strike or Spare ocurss on 10th frame, additional rolls are allowed to complete the frame. These rolls are not treated as Spares or Strikes.
 
+An overview of [bowling scoring](https://bowl.com/keeping-score).
+
 ### Domain terms
+
 - Strike - knocking down all 10 pins in single roll
 - Spare - knocking down all 10 pins across two rolls
 - Frame - rolls for a turn. There are 10 frames total

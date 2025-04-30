@@ -2,6 +2,9 @@
 
 Welcome to a version of the [Bowling Kata](https://kata-log.rocks/bowling-game-kata). This version is a slight alteration of the rules of the typical Bowling Kata by adding a focus on BDD. Behavior-Driven Development lends itself better to most forms of UI based testing. Not only does it put an emphasis on preventing coupling to the implementation, it creates a mechanism to describe various starting scenarios or contexts. These contexts can be implemented as describe blocks and allow you declare a shared setup and teardown in a logical fashion. This drastically reduces the cogntive load of a custom organization.
 
+As you implement the code for the User Story below, take advantage of using test-ids via the `data-testid` attribute in React. Testing in this way we reduce your code's coupling to the interface.
+Also note that you are not allowed to use test doubles (`vi.fn`, `vi.mock`, `vi.spyOn`, etc).
+
 ## Requirements
 
 ### User Story

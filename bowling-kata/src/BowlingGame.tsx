@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 function BowingGame() {
-  const [score, setScore] = useState<Array<number>>(Array.from({ length: 10 }));
+  const [frames, setFrames] = useState<Array<number>>(
+    Array.from({ length: 10 })
+  );
   const [currentFrame, setCurrentFrame] = useState<number>(0);
   const [isFirstRollOfFrame, setIsFirstRollOfFrame] = useState(true);
 
@@ -11,17 +13,17 @@ function BowingGame() {
 
   const handleRoll = (numPins: number) => {
     return () => {
-      const updatedFrames = score.map((roll, index) => {
+      const updatedFrames = frames.map((frame, index) => {
         if (index == currentFrame) {
           if (isFirstRollOfFrame) {
-            const scoreSoFar = index === 0 ? 0 : score[index - 1];
+            const scoreSoFar = index === 0 ? 0 : frames[index - 1];
             return scoreSoFar + numPins;
           } else {
-            return roll + numPins;
+            return frame + numPins;
           }
         }
 
-        return roll;
+        return frame;
       });
 
       if (isFirstRollOfFrame) {
@@ -31,7 +33,7 @@ function BowingGame() {
         setCurrentFrame((prev) => prev + 1);
       }
 
-      setScore(updatedFrames);
+      setFrames(updatedFrames);
     };
   };
 
@@ -48,7 +50,7 @@ function BowingGame() {
         2 pin
       </button>
       <h2>Score:</h2>
-      {score.map((s, i) => {
+      {frames.map((s, i) => {
         return (
           <p key={i} data-testid={`frame${i + 1}-score`}>
             {s}
@@ -57,7 +59,7 @@ function BowingGame() {
       })}
 
       <p data-testid="total-score">
-        {score.reduce((sum, rollScore) => sum + (rollScore ?? 0), 0)}
+        {frames.reduce((sum, rollScore) => sum + (rollScore ?? 0), 0)}
       </p>
     </div>
   );

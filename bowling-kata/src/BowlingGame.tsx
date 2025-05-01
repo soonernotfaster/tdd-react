@@ -42,13 +42,14 @@ function BowingGame() {
       <button onClick={handleGutter()} data-testid="gutter">
         Gutter
       </button>
-      <button onClick={handleRoll(1)} data-testid="roll-1">
-        1 pin
-      </button>
-
-      <button onClick={handleRoll(2)} data-testid="roll-2">
-        2 pin
-      </button>
+      {Array.from({ length: 10 }).map((_, index) => (
+        <button
+          onClick={handleRoll(index + 1)}
+          data-testid={`roll-${index + 1}`}
+        >
+          {`${index + 1} pin`}
+        </button>
+      ))}
       <h2>Score:</h2>
       {frames.map((s, i) => {
         return (

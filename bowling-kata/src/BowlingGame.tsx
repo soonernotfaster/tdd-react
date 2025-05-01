@@ -3,7 +3,7 @@ import { useState } from "react";
 function BowingGame() {
   const [score, setScore] = useState<Array<number>>(Array.from({ length: 10 }));
   const [currentFrame, setCurrentFrame] = useState<number>(0);
-  const [currentRollPerFrame, setCurrentRollPerFrame] = useState<number>(1); // 1 or 2
+  const [isFirstRollOfFrame, setIsFirstRollOfFrame] = useState(true);
 
   const handleGutter = () => {
     return handleRoll(0);
@@ -13,25 +13,25 @@ function BowingGame() {
     return () => {
       const updatedFrames = score.map((roll, index) => {
         if (index == currentFrame) {
-          const scoreSoFar = score.reduce((acc, fs) => acc + (fs ?? 0), 0);
-          console.log("scoreSoFar", scoreSoFar);
-
-          if (currentRollPerFrame === 1) return scoreSoFar + numPins;
-
-          return roll + numPins;
+          if (isFirstRollOfFrame) {
+            const scoreSoFar = index === 0 ? 0 : score[index - 1];
+            return scoreSoFar + numPins;
+          } else {
+            return roll + numPins;
+          }
         }
+
         return roll;
       });
-      console.log("score", score);
+
+      if (isFirstRollOfFrame) {
+        setIsFirstRollOfFrame(false);
+      } else {
+        setIsFirstRollOfFrame(true);
+        setCurrentFrame((prev) => prev + 1);
+      }
 
       setScore(updatedFrames);
-
-      if (currentRollPerFrame == 2) {
-        setCurrentFrame((prev) => prev + 1);
-        setCurrentRollPerFrame(1);
-      } else {
-        setCurrentRollPerFrame(2);
-      }
     };
   };
 

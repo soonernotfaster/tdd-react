@@ -25,7 +25,7 @@ describe(BowlingGame, () => {
   });
 
   describe("on a single round, when just part of the pins are rolled", () => {
-    it("the score equals the number of rolled pins", async () => {
+    it("the score equals the number of rolled pins - 1s", async () => {
       const expectedValues = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
       userEvent.setup();
 
@@ -33,6 +33,25 @@ describe(BowlingGame, () => {
 
       for (let i = 0; i < 20; i++) {
         userEvent.click(screen.getByTestId("roll-1"));
+      }
+
+      await waitFor(() => {
+        expectedValues.forEach((value, i) => {
+          expect(screen.getByTestId(`frame${i + 1}-score`).innerText).toEqual(
+            `${value}`
+          );
+        });
+      });
+    });
+
+    it("the score equals the number of rolled pins - 2s", async () => {
+      const expectedValues = [4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
+      userEvent.setup();
+
+      render(<BowlingGame />);
+
+      for (let i = 0; i < 20; i++) {
+        userEvent.click(screen.getByTestId("roll-2"));
       }
 
       await waitFor(() => {

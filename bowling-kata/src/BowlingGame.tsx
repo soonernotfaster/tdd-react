@@ -43,6 +43,10 @@ function BowingGame() {
       <button onClick={handleRoll(1)} data-testid="roll-1">
         1 pin
       </button>
+
+      <button onClick={handleRoll(2)} data-testid="roll-2">
+        2 pin
+      </button>
       <h2>Score:</h2>
       {score.map((s, i) => {
         return (

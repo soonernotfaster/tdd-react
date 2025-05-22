@@ -13,6 +13,7 @@ describe("BowlingGame", () => {
 
       expect(screen.getByTestId("frame-1-roll-1").innerText).toEqual("");
       expect(screen.getByTestId("frame-1-roll-2").innerText).toEqual("");
+      expect(screen.getByTestId("frame-1-total").innerText).toEqual("");
     });
   });
 
@@ -60,6 +61,59 @@ describe("BowlingGame", () => {
             frameTotal
           );
         });
+      });
+
+      it("does NOT display other scores", async () => {
+        await waitFor(() => {
+          for (let i = 1; i < 10; i++) {
+            expect(
+              screen.getByTestId(`frame-${i}-total`).innerText
+            ).toStrictEqual("");
+          }
+        });
+      });
+    });
+  });
+
+  describe("full game", () => {
+    it("", async () => {
+      render(<BowlingGame />);
+
+      userEvent.click(screen.getByTestId("1-pin"));
+      userEvent.click(screen.getByTestId("1-pin"));
+      userEvent.click(screen.getByTestId("2-pin"));
+      userEvent.click(screen.getByTestId("2-pin"));
+      userEvent.click(screen.getByTestId("3-pin"));
+      userEvent.click(screen.getByTestId("3-pin"));
+
+      for (let i = 0; i < 14; i++) {
+        userEvent.click(screen.getByTestId("gutter"));
+      }
+
+      await waitFor(() => {
+        expect(screen.getByTestId("frame-1-roll-1").innerText).toEqual("1");
+        expect(screen.getByTestId("frame-1-roll-2").innerText).toEqual("1");
+        expect(screen.getByTestId("frame-1-total").innerText).toEqual("2");
+
+        expect(screen.getByTestId("frame-2-roll-1").innerText).toEqual("2");
+        expect(screen.getByTestId("frame-2-roll-2").innerText).toEqual("2");
+        expect(screen.getByTestId("frame-2-total").innerText).toEqual("6");
+
+        expect(screen.getByTestId("frame-3-roll-1").innerText).toEqual("3");
+        expect(screen.getByTestId("frame-3-roll-2").innerText).toEqual("3");
+        expect(screen.getByTestId("frame-3-total").innerText).toEqual("12");
+
+        for (let i = 4; i <= 10; i++) {
+          expect(screen.getByTestId(`frame-${i}-roll-1`).innerText).toEqual(
+            "0"
+          );
+          expect(screen.getByTestId(`frame-${i}-roll-2`).innerText).toEqual(
+            "0"
+          );
+          expect(screen.getByTestId(`frame-${i}-total`).innerText).toEqual(
+            "12"
+          );
+        }
       });
     });
   });

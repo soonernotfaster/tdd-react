@@ -5,6 +5,15 @@ Welcome to a version of the [Bowling Kata](https://kata-log.rocks/bowling-game-k
 As you implement the code for the User Story below, take advantage of using test-ids via the `data-testid` attribute in React. Testing in this way we reduce your code's coupling to the interface.
 Also note that you are not allowed to use test doubles (`vi.fn`, `vi.mock`, `vi.spyOn`, etc).
 
+**Developer setup**
+We will use a devcontainer, but to save you money I will walk you through running it locally using Docker.
+
+This repo uses the Scripts to Rule Them All pattern, where applicable. This allows uv dependencies to instal on container start.
+
+In VS Code install Dev Containers extension
+Clone the repo
+Open the repo using the "Dev Containers: Open Folder in Container" command in VS Code
+
 ## Requirements
 
 ### User Story

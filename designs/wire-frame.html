@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 20% 0 0 0;
+        padding: 0;
+      }
+
+      .buttonContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        justify-content: center;
+        padding: 2em;
+      }
+
+      button {
+        height: 5vw;
+        width: 10vw;
+      }
+
+      .frame {
+        align-items: center;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 10vw;
+      }
+
+      .frames {
+        display: flex;
+        height: 10vh;
+        width: 100vw;
+      }
+
+      .roll {
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 0;
+        border-top: 0;
+        display: flex;
+        justify-content: center;
+        min-height: 1.2em;
+        width: 25%;
+      }
+
+      .rolls {
+        align-items: space-around;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+
+      .total {
+        font-size: 3em;
+        font-weight: bold;
+        justify-self: center;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="game">
+        <div class="frames">
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">3</li>
+              <li class="roll">4</li>
+            </ul>
+            <p class="total">7</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">X</li>
+              <li class="roll"></li>
+            </ul>
+            <p class="total">25</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">4</li>
+              <li class="roll">4</li>
+            </ul>
+            <p class="total">33</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">4</li>
+              <li class="roll">/</li>
+            </ul>
+            <p class="total">47</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">4</li>
+              <li class="roll">4</li>
+            </ul>
+            <p class="total">55</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">4</li>
+              <li class="roll">4</li>
+            </ul>
+            <p class="total">63</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">4</li>
+              <li class="roll">4</li>
+            </ul>
+            <p class="total">71</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">4</li>
+              <li class="roll">4</li>
+            </ul>
+            <p class="total">79</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">4</li>
+              <li class="roll">2</li>
+            </ul>
+            <p class="total">85</p>
+          </section>
+          <section class="frame">
+            <ul class="rolls">
+              <li class="roll">X</li>
+              <li class="roll">X</li>
+              <li class="roll">X</li>
+            </ul>
+            <p class="total">115</p>
+          </section>
+        </div>
+        <div class="buttonContainer">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button>strike</button>
+          <button>spare</button>
+          <button>gutter</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

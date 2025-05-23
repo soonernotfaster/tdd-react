@@ -5,6 +5,7 @@ Welcome to a version of the [Bowling Kata](https://kata-log.rocks/bowling-game-k
 As you implement the code for the User Story below, take advantage of using test-ids via the `data-testid` attribute in React. Testing in this way we reduce your code's coupling to the interface.
 Also note that you are not allowed to use test doubles (`vi.fn`, `vi.mock`, `vi.spyOn`, etc).
 
+
 ## Developer setup
 
 We will use a `devcontainer`, but to save you money I will walk you through running it locally using Docker.
@@ -18,11 +19,13 @@ This allows `uv` dependencies to instal on container start.
 
 ## Requirements
 
+[Resources](#Resources) are after the feature descriptions.
+
 ### User Story
 
-As a bowler,
-I want to know the score of my game without doing math
-So that I can have more fun
+**As a** bowler,  
+**I want** to know the score of my game without doing math  
+**So that** I can have more fun
 
 ### Acceptance Critera
 
@@ -99,12 +102,16 @@ When I roll all strikes (12 in a row)
 Then I see frames with the totals [30, 60, 90, 120, 150, 180, 210, 240, 270, 300]
 ```
 
+### Resources
+
+Our designer uploaded a [wireframe here](/designs/wire-frame.html) in case you need some help visualing the game.
+
 **N.B.**
 If a Strike or Spare ocurss on 10th frame, additional rolls are allowed to complete the frame. These rolls are not treated as Spares or Strikes.
 
-An overview of [bowling scoring](https://bowl.com/keeping-score).
+Need a more in depth overview? Check out this [bowling scoring guide](https://bowl.com/keeping-score).
 
-### Domain terms
+#### Domain terms
 
 - Strike - knocking down all 10 pins in single roll
 - Spare - knocking down all 10 pins across two rolls

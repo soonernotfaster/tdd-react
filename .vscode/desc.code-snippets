@@ -29,7 +29,10 @@
 		"body": [
 			"it(\"$1\", async () => {",
 			"\t$2",
-			"})"
+			"\tawait waitFor(() => {",
+			"\t\t$3",
+			"\t});",
+			"});"
 		],
 		"description": "test"
 	},
